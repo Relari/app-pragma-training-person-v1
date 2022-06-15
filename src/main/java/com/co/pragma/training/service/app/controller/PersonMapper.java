@@ -19,6 +19,7 @@ class PersonMapper {
 
     static PersonResponse mapPersonResponse(Person person) {
         return PersonResponse.builder()
+                .id(person.getId())
                 .names(person.getNames())
                 .lastNames(person.getLastNames())
                 .sex(person.getSex())

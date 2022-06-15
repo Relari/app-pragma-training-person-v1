@@ -30,6 +30,7 @@ class PersonMapper {
 
     static Person mapPerson(PersonEntity personEntity) {
         return Person.builder()
+                .id(personEntity.getId())
                 .names(personEntity.getNames())
                 .lastNames(personEntity.getLastNames())
                 .sex(personEntity.getSex())
