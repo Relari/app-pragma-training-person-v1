@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<server.resource>people</server.resource>
+		<org.springdoc.version>1.6.9</org.springdoc.version>
 		<sonar.exclusions>
 			**/com/co/pragma/training/service/app/PersonApplication.java,
 			**/com/co/pragma/training/service/app/people/model/**
@@ -64,6 +65,12 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-webflux-ui</artifactId>
+			<version>${org.springdoc.version}</version>
 		</dependency>
 
 		<dependency>
