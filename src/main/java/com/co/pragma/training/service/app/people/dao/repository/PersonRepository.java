@@ -23,7 +23,7 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
             String identificationType, String identificationNumber
     );
 
-    @Query(value = "SELECT * FROM PERSON WHERE AGE >= :age", nativeQuery = true)
+    @Query(value = "SELECT * FROM person p WHERE p.age >= :age", nativeQuery = true)
     List<PersonEntity> getOlderPeople(
             @Param("age") Integer age
     );
