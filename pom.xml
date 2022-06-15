@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.co.pragma.training.service.app</groupId>
-	<artifactId>app-pragma-person</artifactId>
+	<artifactId>app-pragma-training-person</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Application Pragma Person</name>
 	<description>Employee project for Spring Boot</description>
