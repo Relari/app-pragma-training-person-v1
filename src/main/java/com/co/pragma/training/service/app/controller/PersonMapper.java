@@ -1,7 +1,9 @@
 package com.co.pragma.training.service.app.controller;
 
+import com.co.pragma.training.service.app.people.model.api.ImageResponse;
 import com.co.pragma.training.service.app.people.model.api.PersonRequest;
 import com.co.pragma.training.service.app.people.model.api.PersonResponse;
+import com.co.pragma.training.service.app.people.model.domain.Image;
 import com.co.pragma.training.service.app.people.model.domain.Person;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 class PersonMapper {
 
+    private static final String EMPTY = "";
+
     static PersonResponse mapPersonResponse(Person person) {
         return PersonResponse.builder()
                 .id(person.getId())
@@ -27,6 +31,10 @@ class PersonMapper {
                 .cityBirth(person.getCityBirth())
                 .identificationType(person.getIdentificationType())
                 .identificationNumber(person.getIdentificationNumber())
+                .image(new ImageResponse(
+                        person.getImage().getId(),
+                        person.getImage().getContent())
+                )
                 .build();
     }
 
@@ -39,6 +47,7 @@ class PersonMapper {
                 .cityBirth(personRequest.getCityBirth())
                 .identificationType(personRequest.getIdentificationType())
                 .identificationNumber(personRequest.getIdentificationNumber())
+                .image(Image.of(EMPTY, personRequest.getImage().getContent()))
                 .build();
     }
 }

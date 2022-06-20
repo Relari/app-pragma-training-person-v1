@@ -81,4 +81,5 @@ public class PersonResponse {
     )
     private String identificationNumber;
 
+    private ImageResponse image;
 }

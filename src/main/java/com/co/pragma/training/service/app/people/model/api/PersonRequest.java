@@ -88,4 +88,7 @@ public class PersonRequest {
     @Pattern(regexp = "[0-9]*")
     private String identificationNumber;
 
+    @NotNull
+    private ImageRequest image;
+
 }

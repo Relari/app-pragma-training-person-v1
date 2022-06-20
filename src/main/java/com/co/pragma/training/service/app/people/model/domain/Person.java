@@ -31,5 +31,22 @@ public class Person {
     private String cityBirth;
     private String identificationType;
     private String identificationNumber;
+    private Image image;
 
+    /**
+     * mutate.
+     * @return {@link PersonBuilder}
+     */
+    public PersonBuilder mutate() {
+        return Person.builder()
+                .id(id)
+                .names(names)
+                .lastNames(lastNames)
+                .sex(sex)
+                .age(age)
+                .cityBirth(cityBirth)
+                .identificationType(identificationType)
+                .identificationNumber(identificationNumber)
+                .image(image);
+    }
 }
