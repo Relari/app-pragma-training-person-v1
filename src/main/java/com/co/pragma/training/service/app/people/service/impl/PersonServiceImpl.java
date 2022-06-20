@@ -1,5 +1,6 @@
 package com.co.pragma.training.service.app.people.service.impl;
 
+import com.co.pragma.training.service.app.people.dao.ImageDao;
 import com.co.pragma.training.service.app.people.dao.PersonDao;
 import com.co.pragma.training.service.app.people.model.domain.Person;
 import com.co.pragma.training.service.app.people.service.PersonService;
@@ -22,20 +23,36 @@ import org.springframework.stereotype.Service;
 public class PersonServiceImpl implements PersonService {
 
     private final PersonDao personDao;
+    private final ImageDao imageDao;
 
     @Override
     public Single<Person> getPerson(String type, String number) {
-        return personDao.searchByDocumentTypeAndNumber(type, number);
+        return personDao.searchByDocumentTypeAndNumber(type, number)
+                .flatMap(person -> imageDao.getImage(person.getId())
+                        .map(image -> person.mutate()
+                                .image(image)
+                                .build()
+                        )
+                );
     }
 
     @Override
     public Observable<Person> getPeopleByAge(Integer age) {
-        return personDao.searchByAge(age);
+        return personDao.searchByAge(age)
+                .flatMapSingle(person -> imageDao.getImage(person.getId())
+                        .map(image -> person.mutate()
+                                .image(image)
+                                .build()
+                        )
+                );
     }
 
     @Override
     public Completable savePerson(Person person) {
-        return personDao.savePerson(person);
+        return personDao.savePerson(person)
+                .flatMapCompletable(idPerson ->
+                        imageDao.save(idPerson, person.getImage().getContent())
+                );
     }
 
 }
