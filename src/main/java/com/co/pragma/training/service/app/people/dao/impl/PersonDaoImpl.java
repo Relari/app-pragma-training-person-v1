@@ -47,11 +47,11 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public Completable savePerson(Person person) {
+    public Single<Long> savePerson(Person person) {
         return Single.fromCallable(() -> PersonMapper.mapPersonEntity(person))
                 .subscribeOn(Schedulers.io())
                 .map(personRepository::save)
-                .ignoreElement();
+                .map(PersonEntity::getId);
     }
 
 }

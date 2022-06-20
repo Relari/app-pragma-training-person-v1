@@ -19,6 +19,6 @@ public interface PersonDao {
 
     Observable<Person> searchByAge(Integer age);
 
-    Completable savePerson(Person person);
+    Single<Long> savePerson(Person person);
 
 }
