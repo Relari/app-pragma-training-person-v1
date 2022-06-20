@@ -15,7 +15,3 @@ springdoc:
 
   swagger-ui:
     path: '${application.api.path}/swagger-ui.html'
-
-logging:
-  level:
-    com.co.pragma.training.service.app: TRACE
