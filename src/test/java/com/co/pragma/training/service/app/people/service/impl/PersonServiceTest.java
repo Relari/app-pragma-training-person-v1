@@ -2,9 +2,11 @@ package com.co.pragma.training.service.app.people.service.impl;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.anyLong;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.when;
 
+import com.co.pragma.training.service.app.people.dao.ImageDao;
 import com.co.pragma.training.service.app.people.util.TestUtil;
 import com.co.pragma.training.service.app.people.dao.PersonDao;
 import io.reactivex.Completable;
@@ -14,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
@@ -30,6 +31,9 @@ class PersonServiceTest {
 
   @Mock
   private PersonDao personDao;
+
+  @Mock
+  private ImageDao imageDao;
 
   @InjectMocks
   private PersonServiceImpl personService;
@@ -51,11 +55,18 @@ class PersonServiceTest {
   @Test
   void whenSaveEmployeeThenReturnSuccessful() {
 
+    var person = TestUtil.buildPerson()
+            .mutate()
+            .image(TestUtil.buildImage())
+            .build();
+
     when(personDao.savePerson(any()))
+        .thenReturn(Single.just(person.getId()));
+
+    when(imageDao.save(anyLong(), anyString()))
         .thenReturn(Completable.complete());
 
-    var testObserver =
-        personService.savePerson(TestUtil.buildPerson()).test();
+    var testObserver = personService.savePerson(person).test();
 
     testObserver.awaitTerminalEvent();
 
@@ -68,8 +79,13 @@ class PersonServiceTest {
 
     var person = TestUtil.buildPerson();
 
-    Mockito.when(personDao.searchByDocumentTypeAndNumber(anyString(), anyString()))
+    when(personDao.searchByDocumentTypeAndNumber(anyString(), anyString()))
         .thenReturn(Single.just(person));
+
+    var image = TestUtil.buildImage();
+
+    when(imageDao.getImage(anyLong()))
+        .thenReturn(Single.just(image));
 
     var testObserver = personService.getPerson(
             person.getIdentificationType(),
@@ -110,8 +126,13 @@ class PersonServiceTest {
 
         var person = TestUtil.buildPerson();
 
-        Mockito.when(personDao.searchByAge(anyInt()))
+        when(personDao.searchByAge(anyInt()))
                 .thenReturn(Observable.just(person));
+
+        var image = TestUtil.buildImage();
+
+        when(imageDao.getImage(anyLong()))
+                .thenReturn(Single.just(image));
 
         var testObserver = personService.getPeopleByAge(
                 person.getAge()

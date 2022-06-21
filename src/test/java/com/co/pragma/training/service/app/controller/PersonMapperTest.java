@@ -34,7 +34,11 @@ class PersonMapperTest {
   @Test
   void mapPersonResponseTest() {
 
-    var person = TestUtil.buildPerson();
+    var person = TestUtil.buildPerson()
+            .mutate()
+            .image(TestUtil.buildImage())
+            .build();
+
     var personResponse = PersonMapper.mapPersonResponse(person);
 
     assertEquals(person.getNames(), personResponse.getNames());

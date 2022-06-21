@@ -68,7 +68,10 @@ class PersonControllerTest {
   @Test
   void whenFindByIdThenReturnEmployee() {
 
-    var person = TestUtil.buildPerson();
+    var person = TestUtil.buildPerson()
+            .mutate()
+            .image(TestUtil.buildImage())
+            .build();
 
     when(personService.getPerson(anyString(), anyString()))
         .thenReturn(Single.just(person));
@@ -108,7 +111,10 @@ class PersonControllerTest {
     @Test
     void whenFindByAgeThenReturnPeople() {
 
-        var person = TestUtil.buildPerson();
+        var person = TestUtil.buildPerson()
+                .mutate()
+                .image(TestUtil.buildImage())
+                .build();
 
         when(personService.getPeopleByAge(anyInt()))
                 .thenReturn(Observable.just(person));

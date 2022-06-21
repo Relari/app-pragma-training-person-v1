@@ -1,8 +1,11 @@
 package com.co.pragma.training.service.app.people.util;
 
 import com.co.pragma.training.service.app.people.model.api.PersonRequest;
+import com.co.pragma.training.service.app.people.model.domain.Image;
 import com.co.pragma.training.service.app.people.model.domain.Person;
 import com.co.pragma.training.service.app.people.model.entity.PersonEntity;
+import com.co.pragma.training.service.app.people.model.api.ImageRequest;
+import com.co.pragma.training.service.app.people.model.external.ImageResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TestUtil {
 
-  private static final Long idEmployee = 1L;
+  private static final Long idPerson = 1L;
   private static final String cityBirth = "Lima - Peru";
   private static final String names = "Renzo Daniel";
   private static final String lastNames = "Lavado Rivas";
@@ -28,7 +31,7 @@ public class TestUtil {
 
   public static Person buildPerson() {
     return Person.builder()
-        .id(idEmployee)
+        .id(idPerson)
         .names(names)
         .lastNames(lastNames)
         .age(age)
@@ -48,11 +51,13 @@ public class TestUtil {
         .cityBirth(cityBirth)
         .identificationType(identificationType)
         .identificationNumber(identificationNumber)
+        .image(buildImageRequest())
         .build();
   }
 
   public static PersonEntity buildPersonEntity() {
     return PersonEntity.builder()
+        .id(idPerson)
         .names(names)
         .lastNames(lastNames)
         .age(age)
@@ -61,5 +66,23 @@ public class TestUtil {
         .identificationType(identificationType)
         .identificationNumber(identificationNumber)
         .build();
+  }
+  private static final String content  = "lkjadlkjadflkjasdlkjasdlkjasdlkj";
+  private static final String idImage  = "70a14d5e-bb62-4b8a-9582-b11d765fba4f";
+
+  public static ImageRequest buildImageRequest() {
+    return new ImageRequest(content);
+  }
+
+  public static Image buildImage() {
+    return Image.of(idImage, content);
+  }
+
+  public static ImageResponse buildImageResponse() {
+    return ImageResponse.builder()
+            .id(idImage)
+            .idPerson(idPerson)
+            .content(content)
+            .build();
   }
 }
