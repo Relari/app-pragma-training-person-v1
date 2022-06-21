@@ -22,7 +22,16 @@ public class ImageDaoImpl implements ImageDao {
   public Completable save(Long idPerson, String content) {
     return Single.fromCallable(() -> ImageMapper.mapImageEntity(idPerson, content))
             .flatMapCompletable(imageApi::save)
-            .subscribeOn(Schedulers.io());
+            .subscribeOn(Schedulers.io())
+            .doOnSubscribe(disposable ->
+                    log.debug("Starting to save the image of the person.")
+            )
+            .doOnError(throwable ->
+                    log.error("An error occurred while saving the image of the person.", throwable)
+            )
+            .doOnComplete(() ->
+                    log.debug("Image of the person saved successfully.")
+            );
   }
 
   @Override
@@ -36,7 +45,16 @@ public class ImageDaoImpl implements ImageDao {
   public Single<Image> getImage(Long id) {
     return imageApi.getImage(id)
             .subscribeOn(Schedulers.io())
-            .map(ImageMapper::mapImage);
+            .map(ImageMapper::mapImage)
+            .doOnSubscribe(disposable ->
+                    log.debug("Find the image of the person. [idPerson={}]", id)
+            )
+            .doOnError(throwable ->
+                    log.error("An error occurred while searching for the person's image. [idPerson={}]", id, throwable)
+            )
+            .doOnSuccess(image ->
+                    log.debug("Image of the person found. [idPerson={}]", id)
+            );
   }
 
 }

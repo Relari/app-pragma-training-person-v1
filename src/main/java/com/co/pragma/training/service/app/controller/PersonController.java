@@ -18,6 +18,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ import org.springframework.web.bind.annotation.*;
                 description = "${application.info.description}"
         )
 )
-
+@Slf4j
 @RestController
 @RequestMapping(path = "${application.api.path}")
 @AllArgsConstructor
@@ -86,7 +87,13 @@ public class PersonController {
             @RequestParam(value = "documentNumber") String documentNumber) {
 
         return personService.getPerson(documentType, documentNumber)
-                .map(PersonMapper::mapPersonResponse);
+                .map(PersonMapper::mapPersonResponse)
+                .doOnSubscribe(disposable ->
+                        log.debug("Search Person By Document - Starting")
+                )
+                .doOnTerminate(() ->
+                        log.debug("Search Person By Document - Terminate")
+                );
     }
 
     @Operation(
@@ -144,7 +151,13 @@ public class PersonController {
     public Completable savePerson(
             @RequestBody PersonRequest personRequest) {
         return Single.fromCallable(() -> PersonMapper.mapPerson(personRequest))
-                .flatMapCompletable(personService::savePerson);
+                .flatMapCompletable(personService::savePerson)
+                .doOnSubscribe(disposable ->
+                        log.debug("Save Person - Starting")
+                )
+                .doOnTerminate(() ->
+                        log.debug("Save Person - Terminate")
+                );
     }
 
 }

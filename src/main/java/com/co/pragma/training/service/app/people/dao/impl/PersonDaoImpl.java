@@ -4,7 +4,6 @@ import com.co.pragma.training.service.app.people.dao.PersonDao;
 import com.co.pragma.training.service.app.people.dao.repository.PersonRepository;
 import com.co.pragma.training.service.app.people.model.domain.Person;
 import com.co.pragma.training.service.app.people.model.entity.PersonEntity;
-import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
@@ -35,7 +34,16 @@ public class PersonDaoImpl implements PersonDao {
                         )
                 )
                 .subscribeOn(Schedulers.io())
-                .map(PersonMapper::mapPerson);
+                .map(PersonMapper::mapPerson)
+                .doOnSubscribe(disposable ->
+                        log.debug("Search for the person in the database. [type={}, number={}]", type, number)
+                )
+                .doOnError(throwable ->
+                        log.error("An error occurred when searching for the person in the database. [type={}, number={}]", type, number)
+                )
+                .doOnSuccess(person ->
+                        log.debug("Person found in the database. [type={}, number={}]", type, number)
+                );
     }
 
     @Override
@@ -51,7 +59,20 @@ public class PersonDaoImpl implements PersonDao {
         return Single.fromCallable(() -> PersonMapper.mapPersonEntity(person))
                 .subscribeOn(Schedulers.io())
                 .map(personRepository::save)
-                .map(PersonEntity::getId);
+                .map(PersonEntity::getId)
+                .doOnSubscribe(disposable ->
+                        log.debug("Save the person in the database. [type={}, number={}]",
+                                person.getIdentificationType(), person.getIdentificationNumber()
+                        )
+                )
+                .doOnError(throwable ->
+                        log.error("An error occurred while saving the person in the database. [type={}, number={}]",
+                                person.getIdentificationType(), person.getIdentificationNumber()
+                        )
+                )
+                .doOnSuccess(idPerson ->
+                        log.debug("Person saved in the database. [idPerson={}]", idPerson)
+                );
     }
 
 }
