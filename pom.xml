@@ -19,6 +19,7 @@
 		<org.springdoc.version>1.6.9</org.springdoc.version>
 		<retrofit.version>2.9.0</retrofit.version>
 		<sonar.exclusions>
+			**/com/co/pragma/training/service/app/config/**,
 			**/com/co/pragma/training/service/app/PersonApplication.java,
 			**/com/co/pragma/training/service/app/people/model/**
 		</sonar.exclusions>
@@ -136,6 +137,7 @@
 				<version>0.8.5</version>
 				<configuration>
 					<excludes>
+						<exclude>**/com/co/pragma/training/service/app/config/**</exclude>
 						<exclude>**/com/co/pragma/training/service/app/PersonApplication.*</exclude>
 						<exclude>**/com/co/pragma/training/service/app/people/model/**</exclude>
 					</excludes>
