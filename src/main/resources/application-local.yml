@@ -1,0 +1,31 @@
+application:
+  http-client:
+    image:
+      base-url: http://localhost:8082/application/pragma/training/v1/
+
+spring:
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        format_sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/PragmaTraining
+    username: root
+    password: '123456'
+
+server:
+  port: 8081
+  error:
+    include-message: always
+
+logging:
+  level:
+    com.co.pragma.training.service.app: TRACE
