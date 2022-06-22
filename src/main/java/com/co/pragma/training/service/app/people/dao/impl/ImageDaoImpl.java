@@ -35,13 +35,6 @@ public class ImageDaoImpl implements ImageDao {
   }
 
   @Override
-  public Observable<Image> getImages() {
-    return imageApi.getImages()
-            .subscribeOn(Schedulers.io())
-            .map(ImageMapper::mapImage);
-  }
-
-  @Override
   public Single<Image> getImage(Long id) {
     return imageApi.getImage(id)
             .subscribeOn(Schedulers.io())

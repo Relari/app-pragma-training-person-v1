@@ -9,8 +9,6 @@ public interface ImageDao {
 
   Completable save(Long idPerson, String content);
 
-  Observable<Image> getImages();
-
   Single<Image> getImage(Long id);
 
 }
