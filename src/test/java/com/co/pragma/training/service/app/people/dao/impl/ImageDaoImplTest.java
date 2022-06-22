@@ -21,30 +21,8 @@ class ImageDaoImplTest {
   @InjectMocks
   private ImageDaoImpl imageDao;
 
-//  @Test
-//  void whenGetAllEmployeesThenReturnEmployees() {
-//
-//    var imageEntity = TestUtil.buildImageEntity();
-//
-//    when(imageRepository.findAll())
-//            .thenReturn(Flux.just(imageEntity));
-//
-//    var testObserver = employeeDao.getImages().test();
-//    testObserver.awaitTerminalEvent();
-//    testObserver.assertComplete().assertNoErrors()
-//            .assertValueAt(0, image ->
-//                    image.getId().equals(imageEntity.getId())
-//            )
-//            .assertValueAt(0, image ->
-//                    image.getIdPerson().equals(imageEntity.getIdPerson())
-//            )
-//            .assertValueAt(0, image ->
-//                    image.getContent().equals(imageEntity.getContent())
-//            );
-//  }
-
   @Test
-  void whenSearchEmployeeThenReturnEmployee() {
+  void whenSearchImageThenReturnEmployee() {
 
     var imageResponse = TestUtil.buildImageResponse();
 
@@ -61,9 +39,22 @@ class ImageDaoImplTest {
                     image.getContent().equals(imageResponse.getContent())
             );
   }
+  
+  @Test
+  void whenSearchImageThenReturnError() {
+
+    when(imageApi.getImage(anyLong()))
+            .thenReturn(Single.error(new Throwable()));
+
+    var idPerson = 1L;
+
+    var testObserver = imageDao.getImage(idPerson).test();
+    testObserver.awaitTerminalEvent();
+    testObserver.assertNotComplete().assertError(Throwable.class);
+  }
 
   @Test
-  void whenSaveEmployeeThenReturnSuccessful() {
+  void whenSaveImageThenReturnSuccessful() {
 
     when(imageApi.save(any()))
             .thenReturn(Completable.complete());
@@ -76,5 +67,18 @@ class ImageDaoImplTest {
     testObserver.assertComplete().assertNoErrors();
   }
 
+  @Test
+  void whenSaveImageThenReturnError() {
+
+    when(imageApi.save(any()))
+            .thenReturn(Completable.error(new RuntimeException()));
+
+    var idPerson = 1L;
+    var content = "content";
+
+    var testObserver = imageDao.save(idPerson, content).test();
+    testObserver.awaitTerminalEvent();
+    testObserver.assertNotComplete().assertError(RuntimeException.class);
+  }
 
 }

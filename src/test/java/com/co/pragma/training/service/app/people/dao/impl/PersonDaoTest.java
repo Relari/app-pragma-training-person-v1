@@ -32,20 +32,6 @@ class PersonDaoTest {
   @InjectMocks
   private PersonDaoImpl personDao;
 
-//  @Test
-//  void whenFindAllThenReturnListEmployees() {
-//
-//    when(personRepository.findAll())
-//        .thenReturn(Collections.singletonList(TestUtil.employeeEntity()));
-//
-//    TestObserver<Employee> testObserver = employeeDao.findAll().test();
-//
-//    testObserver.awaitTerminalEvent();
-//
-//    testObserver.assertComplete().assertNoErrors();
-//
-//  }
-
   @Test
   void whenFindByIdThenReturnEmployee() {
 
@@ -139,39 +125,33 @@ class PersonDaoTest {
 
   }
 
-//  @Test
-//  void whenFindByIdThenReturnEmpty() {
-//
-//    Mockito.when(employeeRepository.findById(Mockito.anyInt()))
-//            .thenReturn(Optional.empty());
-//
-//    TestObserver<Employee> testObserver = employeeDao.findById(1).test();
-//
-//    testObserver.awaitTerminalEvent();
-//
-//    testObserver.assertNotComplete().assertNoValues();
-//
-//  }
-//
-//  @Test
-//  void whenSaveEmployeeThenReturnError() {
-//
-//    Mockito.when(errorFactory.buildException(Mockito.any(), Mockito.any()))
-//            .thenReturn(new RuntimeException());
-//
-//    Mockito.when(employeeRepository.save(Mockito.any()))
-//            .thenReturn(new Throwable());
-//
-//    TestObserver<Void> testObserver = employeeDao.save(TestUtil.employee()).test();
-//
-//    testObserver.awaitTerminalEvent();
-//
-//    testObserver.assertNotComplete().assertNoValues();
-//
-//  }
-//
-//  private RuntimeException employeeException() {
-//    return errorFactory.buildException(ErrorCategory.EMPLOYEE_NOT_SAVE, null);
-//  }
+  @Test
+  void whenFindByIdThenReturnError() {
+
+    when(personRepository.findByIdentificationTypeAndIdentificationNumber(
+            anyString(), anyString())
+    ).thenThrow(NullPointerException.class);
+
+    var testObserver = personDao.searchByDocumentTypeAndNumber("type", "number").test();
+
+    testObserver.awaitTerminalEvent();
+
+    testObserver.assertNotComplete().assertNoValues();
+
+  }
+
+  @Test
+  void whenSaveEmployeeThenReturnError() {
+
+    when(personRepository.save(any()))
+            .thenReturn(new Throwable());
+
+    var testObserver = personDao.savePerson(TestUtil.buildPerson()).test();
+
+    testObserver.awaitTerminalEvent();
+
+    testObserver.assertNotComplete().assertNoValues().assertError(Throwable.class);
+
+  }
 
 }
