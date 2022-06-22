@@ -9,16 +9,22 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.co.pragma.training.service.app</groupId>
-	<artifactId>app-pragma-person</artifactId>
+	<artifactId>app-pragma-training-person</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Application Pragma Person</name>
 	<description>Employee project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 		<server.resource>people</server.resource>
+		<org.springdoc.version>1.6.9</org.springdoc.version>
+		<retrofit.version>2.9.0</retrofit.version>
 		<sonar.exclusions>
-			**/com/co/pragma/training/service/app/PersonApplication.java,
-			**/com/co/pragma/training/service/app/people/model/**
+			**/com/co/pragma/training/service/app/PersonApplication.*,
+			**/com/co/pragma/training/service/app/domain/**,
+			**/com/co/pragma/training/service/app/infrastructure/api/model/**,
+			**/com/co/pragma/training/service/app/infrastructure/db/model/**,
+			**/com/co/pragma/training/service/app/infrastructure/proxy/config/**,
+			**/com/co/pragma/training/service/app/infrastructure/proxy/model/**
 		</sonar.exclusions>
 		<sonar.coverages.minimum>0.00</sonar.coverages.minimum>
 	</properties>
@@ -67,6 +73,35 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-webflux-ui</artifactId>
+			<version>${org.springdoc.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.retrofit2</groupId>
+			<artifactId>retrofit</artifactId>
+			<version>${retrofit.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.retrofit2</groupId>
+			<artifactId>converter-gson</artifactId>
+			<version>${retrofit.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.retrofit2</groupId>
+			<artifactId>adapter-rxjava2</artifactId>
+			<version>${retrofit.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>logging-interceptor</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -106,7 +141,11 @@
 				<configuration>
 					<excludes>
 						<exclude>**/com/co/pragma/training/service/app/PersonApplication.*</exclude>
-						<exclude>**/com/co/pragma/training/service/app/people/model/**</exclude>
+						<exclude>**/com/co/pragma/training/service/app/domain/**</exclude>
+						<exclude>**/com/co/pragma/training/service/app/infrastructure/api/model/**</exclude>
+						<exclude>**/com/co/pragma/training/service/app/infrastructure/db/model/**</exclude>
+						<exclude>**/com/co/pragma/training/service/app/infrastructure/proxy/config/**</exclude>
+						<exclude>**/com/co/pragma/training/service/app/infrastructure/proxy/model/**</exclude>
 					</excludes>
 				</configuration>
 				<executions>
