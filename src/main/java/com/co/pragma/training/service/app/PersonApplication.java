@@ -2,6 +2,7 @@ package com.co.pragma.training.service.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * <b>Class:</b> PersonApplication.
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0.0
  */
 
+@EnableEurekaClient
 @SpringBootApplication
 public class PersonApplication {
 

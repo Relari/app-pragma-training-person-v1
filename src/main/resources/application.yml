@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: '@project.artifactId@'
   profiles.active: local
 
 application:
@@ -15,3 +17,8 @@ springdoc:
 
   swagger-ui:
     path: '${application.api.path}/swagger-ui.html'
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://localhost:8090/eureka/'
