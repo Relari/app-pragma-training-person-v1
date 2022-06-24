@@ -2,8 +2,8 @@ package com.co.pragma.training.service.app.util;
 
 import com.co.pragma.training.service.app.domain.Image;
 import com.co.pragma.training.service.app.domain.Person;
-import com.co.pragma.training.service.app.infrastructure.api.model.ImageRequest;
-import com.co.pragma.training.service.app.infrastructure.api.model.PersonRequest;
+import com.co.pragma.training.service.app.infrastructure.controller.model.ImageRequest;
+import com.co.pragma.training.service.app.infrastructure.controller.model.PersonRequest;
 import com.co.pragma.training.service.app.infrastructure.db.model.PersonEntity;
 import com.co.pragma.training.service.app.infrastructure.proxy.model.ImageResponse;
 import lombok.AccessLevel;

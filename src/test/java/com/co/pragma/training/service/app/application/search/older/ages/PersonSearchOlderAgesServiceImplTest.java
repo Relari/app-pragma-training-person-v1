@@ -1,7 +1,8 @@
 package com.co.pragma.training.service.app.application.search.older.ages;
 
-import com.co.pragma.training.service.app.infrastructure.db.PersonDao;
-import com.co.pragma.training.service.app.infrastructure.proxy.ImageDao;
+import com.co.pragma.training.service.app.application.usecase.impl.PersonSearchOlderAgesServiceImpl;
+import com.co.pragma.training.service.app.application.dao.PersonDao;
+import com.co.pragma.training.service.app.application.dao.ImageDao;
 import com.co.pragma.training.service.app.util.TestUtil;
 import io.reactivex.Observable;
 import io.reactivex.Single;

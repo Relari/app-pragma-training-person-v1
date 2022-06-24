@@ -1,7 +1,8 @@
 package com.co.pragma.training.service.app.application.search.person;
 
-import com.co.pragma.training.service.app.infrastructure.db.PersonDao;
-import com.co.pragma.training.service.app.infrastructure.proxy.ImageDao;
+import com.co.pragma.training.service.app.application.usecase.impl.PersonSearchServiceImpl;
+import com.co.pragma.training.service.app.application.dao.PersonDao;
+import com.co.pragma.training.service.app.application.dao.ImageDao;
 import com.co.pragma.training.service.app.util.TestUtil;
 import io.reactivex.Single;
 import org.junit.jupiter.api.Test;

@@ -1,5 +1,6 @@
 package com.co.pragma.training.service.app.infrastructure.proxy;
 
+import com.co.pragma.training.service.app.application.dao.ImageDao;
 import com.co.pragma.training.service.app.domain.Image;
 import com.co.pragma.training.service.app.infrastructure.proxy.api.ImageApi;
 import com.co.pragma.training.service.app.infrastructure.proxy.mapper.ImageMapper;

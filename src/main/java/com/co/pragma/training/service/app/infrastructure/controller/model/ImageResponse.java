@@ -1,4 +1,4 @@
-package com.co.pragma.training.service.app.infrastructure.api.model;
+package com.co.pragma.training.service.app.infrastructure.controller.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

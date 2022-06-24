@@ -1,4 +1,4 @@
-package com.co.pragma.training.service.app.infrastructure.db;
+package com.co.pragma.training.service.app.application.dao;
 
 import com.co.pragma.training.service.app.domain.Person;
 import io.reactivex.Observable;

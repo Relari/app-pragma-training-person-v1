@@ -1,7 +1,8 @@
 package com.co.pragma.training.service.app.application.create;
 
-import com.co.pragma.training.service.app.infrastructure.db.PersonDao;
-import com.co.pragma.training.service.app.infrastructure.proxy.ImageDao;
+import com.co.pragma.training.service.app.application.usecase.impl.PersonCreateServiceImpl;
+import com.co.pragma.training.service.app.application.dao.PersonDao;
+import com.co.pragma.training.service.app.application.dao.ImageDao;
 import com.co.pragma.training.service.app.util.TestUtil;
 import io.reactivex.Completable;
 import io.reactivex.Single;

@@ -1,5 +1,6 @@
 package com.co.pragma.training.service.app.infrastructure.db;
 
+import com.co.pragma.training.service.app.application.dao.PersonDao;
 import com.co.pragma.training.service.app.domain.Person;
 import com.co.pragma.training.service.app.infrastructure.db.mapper.PersonMapper;
 import com.co.pragma.training.service.app.infrastructure.db.model.PersonEntity;

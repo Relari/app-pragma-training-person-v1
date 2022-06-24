@@ -1,4 +1,4 @@
-package com.co.pragma.training.service.app.infrastructure.proxy;
+package com.co.pragma.training.service.app.application.dao;
 
 import com.co.pragma.training.service.app.domain.Image;
 import io.reactivex.Completable;

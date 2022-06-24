@@ -1,5 +1,5 @@
 
-package com.co.pragma.training.service.app.infrastructure.api.model;
+package com.co.pragma.training.service.app.infrastructure.controller.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;

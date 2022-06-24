@@ -1,13 +1,13 @@
-package com.co.pragma.training.service.app.infrastructure.api.controller;
+package com.co.pragma.training.service.app.infrastructure.controller;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.when;
 
-import com.co.pragma.training.service.app.application.create.PersonCreateService;
-import com.co.pragma.training.service.app.application.search.older.ages.PersonSearchOlderAgesService;
-import com.co.pragma.training.service.app.application.search.person.PersonSearchService;
+import com.co.pragma.training.service.app.application.usecase.PersonCreateService;
+import com.co.pragma.training.service.app.application.usecase.PersonSearchOlderAgesService;
+import com.co.pragma.training.service.app.application.usecase.PersonSearchService;
 import com.co.pragma.training.service.app.util.TestUtil;
 import io.reactivex.Completable;
 import io.reactivex.Observable;

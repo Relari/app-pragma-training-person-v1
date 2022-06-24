@@ -1,11 +1,11 @@
-package com.co.pragma.training.service.app.application.search.person;
+package com.co.pragma.training.service.app.application.usecase.impl;
 
+import com.co.pragma.training.service.app.application.dao.ImageDao;
+import com.co.pragma.training.service.app.application.dao.PersonDao;
+import com.co.pragma.training.service.app.application.usecase.PersonSearchService;
 import com.co.pragma.training.service.app.domain.Person;
-import com.co.pragma.training.service.app.infrastructure.db.PersonDao;
-import com.co.pragma.training.service.app.infrastructure.proxy.ImageDao;
 import io.reactivex.Single;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 
 /**
  * <b>Class:</b> PersonSearchOlderAgesServiceImpl.
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
  * @version 1.0.0
  */
 
-@Service
 @AllArgsConstructor
 public class PersonSearchServiceImpl implements PersonSearchService {
 

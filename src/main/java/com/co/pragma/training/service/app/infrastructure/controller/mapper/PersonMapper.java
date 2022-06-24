@@ -1,10 +1,10 @@
-package com.co.pragma.training.service.app.infrastructure.api.mapper;
+package com.co.pragma.training.service.app.infrastructure.controller.mapper;
 
 import com.co.pragma.training.service.app.domain.Image;
 import com.co.pragma.training.service.app.domain.Person;
-import com.co.pragma.training.service.app.infrastructure.api.model.ImageResponse;
-import com.co.pragma.training.service.app.infrastructure.api.model.PersonRequest;
-import com.co.pragma.training.service.app.infrastructure.api.model.PersonResponse;
+import com.co.pragma.training.service.app.infrastructure.controller.model.ImageResponse;
+import com.co.pragma.training.service.app.infrastructure.controller.model.PersonRequest;
+import com.co.pragma.training.service.app.infrastructure.controller.model.PersonResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

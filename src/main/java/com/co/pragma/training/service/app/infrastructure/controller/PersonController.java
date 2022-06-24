@@ -1,11 +1,11 @@
-package com.co.pragma.training.service.app.infrastructure.api.controller;
+package com.co.pragma.training.service.app.infrastructure.controller;
 
-import com.co.pragma.training.service.app.application.search.person.PersonSearchService;
-import com.co.pragma.training.service.app.application.search.older.ages.PersonSearchOlderAgesService;
-import com.co.pragma.training.service.app.application.create.PersonCreateService;
-import com.co.pragma.training.service.app.infrastructure.api.mapper.PersonMapper;
-import com.co.pragma.training.service.app.infrastructure.api.model.PersonRequest;
-import com.co.pragma.training.service.app.infrastructure.api.model.PersonResponse;
+import com.co.pragma.training.service.app.application.usecase.PersonSearchService;
+import com.co.pragma.training.service.app.application.usecase.PersonSearchOlderAgesService;
+import com.co.pragma.training.service.app.application.usecase.PersonCreateService;
+import com.co.pragma.training.service.app.infrastructure.controller.mapper.PersonMapper;
+import com.co.pragma.training.service.app.infrastructure.controller.model.PersonRequest;
+import com.co.pragma.training.service.app.infrastructure.controller.model.PersonResponse;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
