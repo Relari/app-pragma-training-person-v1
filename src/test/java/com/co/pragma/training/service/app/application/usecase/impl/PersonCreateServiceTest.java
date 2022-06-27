@@ -1,4 +1,4 @@
-package com.co.pragma.training.service.app.application.create;
+package com.co.pragma.training.service.app.application.usecase.impl;
 
 import com.co.pragma.training.service.app.application.usecase.impl.PersonCreateServiceImpl;
 import com.co.pragma.training.service.app.application.dao.PersonDao;

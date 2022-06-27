@@ -1,4 +1,4 @@
-package com.co.pragma.training.service.app.infrastructure.config.spring.mapper;
+package com.co.pragma.training.service.app.infrastructure.controller.mapper;
 
 import com.co.pragma.training.service.app.infrastructure.controller.mapper.PersonMapper;
 import com.co.pragma.training.service.app.util.TestUtil;

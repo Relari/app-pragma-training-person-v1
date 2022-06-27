@@ -1,4 +1,4 @@
-package com.co.pragma.training.service.app.application.search.older.ages;
+package com.co.pragma.training.service.app.application.usecase.impl;
 
 import com.co.pragma.training.service.app.application.usecase.impl.PersonSearchOlderAgesServiceImpl;
 import com.co.pragma.training.service.app.application.dao.PersonDao;

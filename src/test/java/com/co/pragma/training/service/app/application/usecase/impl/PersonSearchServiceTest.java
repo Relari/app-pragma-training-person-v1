@@ -1,4 +1,4 @@
-package com.co.pragma.training.service.app.application.search.person;
+package com.co.pragma.training.service.app.application.usecase.impl;
 
 import com.co.pragma.training.service.app.application.usecase.impl.PersonSearchServiceImpl;
 import com.co.pragma.training.service.app.application.dao.PersonDao;
