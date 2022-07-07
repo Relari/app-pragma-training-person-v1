@@ -3,6 +3,7 @@ package com.co.pragma.training.service.app.infrastructure.proxy;
 import com.co.pragma.training.service.app.application.dao.ImageDao;
 import com.co.pragma.training.service.app.domain.Image;
 import com.co.pragma.training.service.app.infrastructure.proxy.api.ImageApi;
+import com.co.pragma.training.service.app.infrastructure.config.spring.HeaderApplication;
 import com.co.pragma.training.service.app.infrastructure.proxy.mapper.ImageMapper;
 import io.reactivex.Completable;
 import io.reactivex.Single;
@@ -17,11 +18,14 @@ import org.springframework.stereotype.Component;
 public class ImageDaoImpl implements ImageDao {
 
   private final ImageApi imageApi;
+  private final HeaderApplication headerApplication;
 
   @Override
   public Completable save(Long idPerson, String content) {
     return Single.fromCallable(() -> ImageMapper.mapImageEntity(idPerson, content))
-            .flatMapCompletable(imageApi::save)
+            .flatMapCompletable(imageRequest ->
+                    imageApi.save(headerApplication.getBearerToken(), imageRequest)
+            )
             .subscribeOn(Schedulers.io())
             .doOnSubscribe(disposable ->
                     log.debug("Starting to save the image of the person.")
@@ -36,7 +40,7 @@ public class ImageDaoImpl implements ImageDao {
 
   @Override
   public Single<Image> getImage(Long id) {
-    return imageApi.getImage(id)
+    return imageApi.getImage(headerApplication.getBearerToken(), id)
             .subscribeOn(Schedulers.io())
             .map(ImageMapper::mapImage)
             .doOnSubscribe(disposable ->

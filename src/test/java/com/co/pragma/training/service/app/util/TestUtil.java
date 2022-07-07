@@ -5,7 +5,7 @@ import com.co.pragma.training.service.app.domain.Person;
 import com.co.pragma.training.service.app.infrastructure.controller.model.ImageRequest;
 import com.co.pragma.training.service.app.infrastructure.controller.model.PersonRequest;
 import com.co.pragma.training.service.app.infrastructure.db.model.PersonEntity;
-import com.co.pragma.training.service.app.infrastructure.proxy.model.ImageResponse;
+import com.co.pragma.training.service.app.infrastructure.proxy.model.image.ImageResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

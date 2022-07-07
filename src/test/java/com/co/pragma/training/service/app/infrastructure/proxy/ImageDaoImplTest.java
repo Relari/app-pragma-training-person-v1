@@ -26,7 +26,7 @@ class ImageDaoImplTest {
 
     var imageResponse = TestUtil.buildImageResponse();
 
-    when(imageApi.getImage(anyLong()))
+    when(imageApi.getImage(anyString(), anyLong()))
             .thenReturn(Single.just(imageResponse));
 
     var testObserver = imageDao.getImage(imageResponse.getIdPerson()).test();
@@ -43,7 +43,7 @@ class ImageDaoImplTest {
   @Test
   void whenSearchEmployeeThenReturnError() {
 
-    when(imageApi.getImage(anyLong()))
+    when(imageApi.getImage(anyString(), anyLong()))
             .thenReturn(Single.error(new Throwable()));
 
     var idPerson = 1L;
@@ -56,7 +56,7 @@ class ImageDaoImplTest {
   @Test
   void whenSaveImageThenReturnSuccessful() {
 
-    when(imageApi.save(any()))
+    when(imageApi.save(anyString(), any()))
             .thenReturn(Completable.complete());
 
     var idPerson = 1L;
@@ -70,7 +70,7 @@ class ImageDaoImplTest {
   @Test
   void whenSaveImageThenReturnError() {
 
-    when(imageApi.save(any()))
+    when(imageApi.save(anyString(), any()))
             .thenReturn(Completable.error(new RuntimeException()));
 
     var idPerson = 1L;

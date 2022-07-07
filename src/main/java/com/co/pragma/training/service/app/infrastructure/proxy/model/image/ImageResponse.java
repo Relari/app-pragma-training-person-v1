@@ -1,4 +1,4 @@
-package com.co.pragma.training.service.app.infrastructure.proxy.model;
+package com.co.pragma.training.service.app.infrastructure.proxy.model.image;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

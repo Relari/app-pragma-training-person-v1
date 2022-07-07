@@ -1,6 +1,7 @@
 package com.co.pragma.training.service.app.infrastructure.proxy.config;
 
 import com.co.pragma.training.service.app.infrastructure.proxy.api.ImageApi;
+import com.co.pragma.training.service.app.infrastructure.proxy.api.JwtTokenApi;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +21,9 @@ public class RestConfiguration {
 
   @Value("${application.http-client.image.base-url}")
   private String imageUri;
+
+  @Value("${application.http-client.jwt-token.base-url}")
+  private String jwtTokenUri;
 
   @Value("${logging.level.com.co.pragma.training.service.app}")
   private String levelLogApp;
@@ -57,6 +61,11 @@ public class RestConfiguration {
   @Bean
   public ImageApi imageApi() {
     return retrofit(imageUri).create(ImageApi.class);
+  }
+
+  @Bean
+  public JwtTokenApi jwtTokenApi() {
+    return retrofit(jwtTokenUri).create(JwtTokenApi.class);
   }
 
 }

@@ -1,23 +1,22 @@
 package com.co.pragma.training.service.app.infrastructure.proxy.api;
 
-import com.co.pragma.training.service.app.infrastructure.proxy.model.ImageResponse;
-import com.co.pragma.training.service.app.infrastructure.proxy.model.ImageRequest;
+import com.co.pragma.training.service.app.infrastructure.proxy.model.image.ImageResponse;
+import com.co.pragma.training.service.app.infrastructure.proxy.model.image.ImageRequest;
 import io.reactivex.Completable;
 import io.reactivex.Single;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit2.http.*;
 
 public interface ImageApi {
 
   @POST("images")
   Completable save(
+          @Header("Authorization") String authorization,
           @Body ImageRequest imageRequest
   );
 
   @GET("images/{idPerson}")
   Single<ImageResponse> getImage(
+          @Header("Authorization") String authorization,
           @Path("idPerson") Long id
   );
 
