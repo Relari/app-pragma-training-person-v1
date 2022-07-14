@@ -24,7 +24,7 @@ public class ImageDaoImpl implements ImageDao {
   public Completable save(Long idPerson, String content) {
     return Single.fromCallable(() -> ImageMapper.mapImageEntity(idPerson, content))
             .flatMapCompletable(imageRequest ->
-                    imageApi.save(headerApplication.getBearerToken(), imageRequest)
+                    imageApi.save(headerApplication.getAuthorization(), imageRequest)
             )
             .subscribeOn(Schedulers.io())
             .doOnSubscribe(disposable ->
@@ -40,7 +40,7 @@ public class ImageDaoImpl implements ImageDao {
 
   @Override
   public Single<Image> getImage(Long id) {
-    return imageApi.getImage(headerApplication.getBearerToken(), id)
+    return imageApi.getImage(headerApplication.getAuthorization(), id)
             .subscribeOn(Schedulers.io())
             .map(ImageMapper::mapImage)
             .doOnSubscribe(disposable ->

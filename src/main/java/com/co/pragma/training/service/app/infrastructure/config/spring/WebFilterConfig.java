@@ -28,6 +28,8 @@ public class WebFilterConfig implements WebFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 
+        headerApplication.setHeaders(exchange.getRequest().getHeaders());
+
         String authorization = exchange.getRequest()
                 .getHeaders()
                 .getFirst(HttpHeaders.AUTHORIZATION);
@@ -38,8 +40,6 @@ public class WebFilterConfig implements WebFilter {
             throw new ResponseStatusException(status, status.getReasonPhrase());
 
         } else {
-
-            headerApplication.setBearerToken(authorization);
 
             ValidResponse validResponse;
             try {

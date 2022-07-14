@@ -1,15 +1,15 @@
 package com.co.pragma.training.service.app.infrastructure.config.spring;
 
-import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+import org.springframework.http.HttpHeaders;
 
 
-@Getter
-@Setter
-@ToString
 public class HeaderApplication {
 
-    private String bearerToken;
+    @Setter
+    private HttpHeaders headers;
 
+    public String getAuthorization() {
+        return headers.getFirst("Authorization");
+    }
 }
