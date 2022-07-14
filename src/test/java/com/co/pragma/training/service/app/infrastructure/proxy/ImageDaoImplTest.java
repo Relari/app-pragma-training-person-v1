@@ -28,7 +28,7 @@ class ImageDaoImplTest {
 
   @BeforeEach
   void init() {
-    when(headerApplication.getBearerToken())
+    when(headerApplication.getAuthorization())
             .thenReturn("Bearer accessToken");
   }
 
