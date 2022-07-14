@@ -1,9 +1,11 @@
 package com.co.pragma.training.service.app.infrastructure.proxy;
 
+import com.co.pragma.training.service.app.infrastructure.config.spring.HeaderApplication;
 import com.co.pragma.training.service.app.infrastructure.proxy.api.ImageApi;
 import com.co.pragma.training.service.app.util.TestUtil;
 import io.reactivex.Completable;
 import io.reactivex.Single;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,8 +20,17 @@ class ImageDaoImplTest {
   @Mock
   private ImageApi imageApi;
 
+  @Mock
+  private HeaderApplication headerApplication;
+
   @InjectMocks
   private ImageDaoImpl imageDao;
+
+  @BeforeEach
+  void init() {
+    when(headerApplication.getBearerToken())
+            .thenReturn("Bearer accessToken");
+  }
 
   @Test
   void whenSearchEmployeeThenReturnImage() {
